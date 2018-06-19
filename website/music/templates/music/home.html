@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!---<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/4.0.0-beta.2/solar/bootstrap.min.css">-->
+  {% block head %}
+    <title>Home</title>
+  {% endblock %}
+</head>
+<body>
+ {% block body %}
+<div class="container">
+    <h2>Welcome to home page</h2>
+    {% if object_list %}
+    <table class="table table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Artist:</th>
+                <th>Album_Title</th>
+                <th>Gener</th>
+                <th>AlbumLogo</th>
+                <th>DeteleAlbum</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for list in object_list %}
+            <tr>
+                <td>{{list.artist}}</td>
+                <!--<td><a href="/music/{{list.id}}/">{{list.album_title}}</a></td>-->
+                <td>
+                    <a href="{% url 'music:details' list.id %}">{{list.album_title}}</a>
+                </td>
+                <td>{{list.genre}}</td>
+                <td>
+                    <img src="{{list.album_logo.url}}" alt="Not Show">
+                </td>
+                <td>
+                   <div>
+                       <span>
+                            <form action="{% url 'music:album-delete' list.id %}" method="post" style="display:inline-block;" class="deleteForm">
+                                {% csrf_token %}
+                                <input type="hidden" name="album_id" value="{{list.id}}"/>
+                                <button type="submit" class="btn btn-default btn-sm" id="btn">
+                                <span class="fa fa-trash-o" aria-hidden="true" style="font-size:2em;"></span>
+                                </button>
+                            </form>
+                           <span>
+                            <form action="{% url 'music:album-update' list.id %}" class="form-horizontal" method="post" enctype="multipart/form-data" style="display:inline-block;" >
+                                {% csrf_token %}
+                                {% include 'music/form_template.html' %}
+                                <input type="hidden" name="album_id" value="{{list.id}}"/>
+                                <button type="submit" class="btn btn-default btn-sm" id="pencil" value="Update">
+                                    <span class="fa fa-pencil" aria-hidden="true" style="font-size:2em;"></span>
+                                </button>
+                          </form>
+                           </span>
+                       </span>
+                   </div>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    {% endif %}
+</div>
+ {% endblock %}
+</body>
+</html>

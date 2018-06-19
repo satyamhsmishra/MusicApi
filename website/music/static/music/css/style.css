@@ -1,0 +1,49 @@
+.body
+{
+  background-image:url('https://goo.gl/j9KV7b');
+}
+img {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    transition:all 0.2s;
+}
+img:hover{
+    transform:scale(1.8,1.8);
+    box-shadow: box-shadow: 10px 10px 8px 10px #333;
+}
+.navbar {
+    border-radius: 0;
+}
+
+body {
+    background-color: cornflowerblue;
+}
+
+#myNavbar
+{
+  border-radius: none;
+}
+#btn
+{
+  background:#333;
+  color:orange;
+  transition:all 0.5s;
+}
+#btn:hover
+{
+   transform:scale(1.5,1.5);
+   border-radius:50%;
+   box-shadow: box-shadow: 10px 10px 8px 10px #888888;
+}
+#pencil
+{
+  background:#333;
+  color:#ffffff;
+  transition:all 0.5s;
+}
+#pencil:hover
+{
+   transform:scale(1.5,1.5);
+   border-radius:50%;
+}

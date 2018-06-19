@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+         {% load static %}
+        {% block head %}
+            <title>details</title>
+        {% endblock %}
+</head>
+<body>
+     {% block body %}
+  <div class="container">
+       <!--   This is <u><em style="color:orange">{{albums.album_title}} </em></u> and the id of this album is <u><em style="color:orange">{{albums.id}}</em></u>-->
+    <table class="table table-bordered table-hover">
+           <thead>
+               <tr>
+                   <th>Album_id</th>
+                   <th>Song_Name</th>
+                   <th>FileType</th>         
+               </tr>
+           </thead>
+           {% for song in object_list.song_set.all %}
+           <tbody>
+               <tr>
+                   <td>{{albums.id}}</td>
+                   <td>{{song.song_title}}</td>                   
+                   <td>{{song.file_type}}</td>
+               </tr>
+           </tbody>
+             {% endfor %}
+       </table>
+      </div>
+     {% endblock %}
+</body>
+</html>
